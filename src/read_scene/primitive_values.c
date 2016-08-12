@@ -81,6 +81,7 @@ static void		init_primitive(t_prim *p)
 	p->radius = 1.0;
 	p->limit = 5;
 	p->material = 0;
+	p->limit = -1;
 }
 
 void			get_primitive_attributes(t_env *e, int fd)
