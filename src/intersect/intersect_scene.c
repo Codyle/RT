@@ -6,7 +6,7 @@
 /*   By: adippena <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/17 12:38:20 by adippena          #+#    #+#             */
-/*   Updated: 2016/08/11 22:11:44 by adippena         ###   ########.fr       */
+/*   Updated: 2016/08/12 15:47:12 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int			intersect_prim(t_env *e, t_ray *ray, size_t prim, double *t)
 		return (intersect_cylinder(ray, e->prim[prim], t));
 	if (e->prim[prim]->type == PRIM_CONE)
 		return (intersect_cone(ray, e->prim[prim], t));
+	if (e->prim[prim]->type == PRIM_DISK)
+		return (intersect_disk(ray, e->prim[prim], t));
 	return (0);
 }
 

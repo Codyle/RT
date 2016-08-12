@@ -6,7 +6,7 @@
 /*   By: adippena <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/26 14:49:05 by adippena          #+#    #+#             */
-/*   Updated: 2016/08/11 21:01:43 by adippena         ###   ########.fr       */
+/*   Updated: 2016/08/12 15:49:05 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ int			intersect_cylinder(t_ray *r, t_prim *o, double *t);
 int			intersect_cone(t_ray *r, t_prim *o, double *t);
 int			intersect_triangle(t_ray *r, t_face *f, double *t);
 int			intersect_box(t_ray *r, t_vector box[2]);
+int			intersect_disk(t_ray *r, t_prim *o, double *t);
 
 /*
 ** src/diffuse.c
