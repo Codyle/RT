@@ -6,7 +6,7 @@
 /*   By: adippena <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/26 14:49:05 by adippena          #+#    #+#             */
-/*   Updated: 2016/08/12 15:49:05 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/15 10:34:10 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ t_vector	get_unit_vector(t_env *e, t_split_string values);
 void		get_tri(t_env *e, t_prim *o, t_split_string *values);
 void		get_material_attributes(t_env *e, int fd);
 void		read_obj(t_env *e, int fd);
+void		init_material(t_material *m);
 
 /*
 ** src/draw.c
@@ -73,20 +74,36 @@ int			intersect_prim(t_env *e, t_ray *ray, size_t prim, double *t);
 /*
 ** src/intersect
 */
-void		intersect_scene(t_env *e);
-int			intersect_sphere(t_ray *r, t_prim *s, double *t);
-int			intersect_plane(t_ray *r, t_prim *o, double *t);
 int			intersect_cylinder(t_ray *r, t_prim *o, double *t);
 int			intersect_cone(t_ray *r, t_prim *o, double *t);
-int			intersect_triangle(t_ray *r, t_face *f, double *t);
 int			intersect_box(t_ray *r, t_vector box[2]);
 int			intersect_disk(t_ray *r, t_prim *o, double *t);
+int			intersect_object(t_env *e, t_object *o, double *t);
+int			intersect_plane(t_ray *r, t_prim *o, double *t);
+void		intersect_scene(t_env *e);
+int			intersect_sphere(t_ray *r, t_prim *s, double *t);
+int			intersect_triangle(t_ray *r, t_face *f, double *t);
 
 /*
 ** src/diffuse.c
 */
 t_colour	prim_diffuse(t_env *e);
 t_colour	face_diffuse(t_env *e);
+
+/*
+** src/find_colour_struct.c
+*/
+t_colour    find_colour_struct(t_env *e, int depth);
+
+/*
+** src/reflect.c
+*/
+t_colour    reflect(t_env *e, int depth);
+
+/*
+** src/refract.c
+*/
+t_colour    refract(t_env *e, int depth, t_colour colour);
 
 /*
 ** src/shadow.c
@@ -98,5 +115,20 @@ int			in_shadow(t_env *e, t_light *light);
 */
 void		setup_camera_plane(t_env *e, t_camera_ray *c);
 void		get_ray_dir(t_env *e, t_camera_ray *cr, double x, double y);
+
+/*
+** src/get_normal.c
+*/
+t_vector    get_normal(t_env *e, t_vector ray);
+
+/*
+** src/copy_env.c
+*/
+t_env	*copy_env(t_env *e);
+
+/*
+** src/read_file/count_structurs.c
+*/
+//t_objcount  count_object(char *file, t_env *e);
 
 #endif

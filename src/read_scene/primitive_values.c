@@ -6,7 +6,7 @@
 /*   By: adippena <angusdippenaar@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/09 09:54:48 by adippena          #+#    #+#             */
-/*   Updated: 2016/08/12 17:22:26 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/15 09:28:32 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ static void		init_primitive(t_prim *p)
 	p->type = PRIM_SPHERE;
 	p->loc = (t_vector){0.0, 0.0, 0.0};
 	p->radius = 1.0;
-	p->limit = 5;
 	p->material = 0;
+	p->angle = 0.523599;
 	p->limit = -1;
 }
 

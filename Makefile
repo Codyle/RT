@@ -6,7 +6,7 @@
 #    By: adippena <angusdippenaar@gmail.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/09 12:47:08 by adippena          #+#    #+#              #
-#    Updated: 2016/08/12 15:50:42 by rojones          ###   ########.fr        #
+#    Updated: 2016/08/15 10:31:57 by rojones          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,13 +20,14 @@ LIBS		=	-lm
 ## PLEASE TRY AND KEEP THE SOURCE FILES IN ALPHABETICAL ORDER ##
 
 INTERSECT	=	src/intersect/intersect_box.c		\
+				src/intersect/intersect_cone.c		\
+				src/intersect/intersect_cylinder.c	\
+				src/intersect/intersect_disk.c 		\
 				src/intersect/intersect_scene.c		\
 				src/intersect/intersect_sphere.c	\
 				src/intersect/intersect_plane.c		\
-				src/intersect/intersect_cylinder.c	\
-				src/intersect/intersect_cone.c		\
 				src/intersect/intersect_triangle.c	\
-				src/intersect/intersect_disk.c
+				src/intersect/intersect_object.c
 
 READ_SCENE	=	src/read_scene/camera_values.c		\
 				src/read_scene/light_values.c		\
@@ -36,8 +37,9 @@ READ_SCENE	=	src/read_scene/camera_values.c		\
 				src/read_scene/read_colour.c		\
 				src/read_scene/read_scene.c			\
 				src/read_scene/read_obj.c			\
-				src/read_scene/read_vector.c		\
+				src/read_scene/read_vector.c
 #				src/read_scene/read_triangle.c
+#				src/read_scene/count_structurs.c
 
 MATHS		=	src/vector_maths/colour_to_unit.c	\
 				src/vector_maths/vector_add.c		\
@@ -61,7 +63,12 @@ SRC			=	$(INTERSECT)						\
 				src/init_env.c						\
 				src/loop.c							\
 				src/main.c							\
-				src/shadow.c
+				src/shadow.c						\
+				src/get_normal.c					\
+				src/reflect.c						\
+				src/refract.c						\
+				src/find_colour_struct.c			\
+				src/copy_env.c
 
 all: $(NAME)
 

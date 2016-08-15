@@ -6,7 +6,7 @@
 /*   By: adippena <angusdippenaar@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/14 22:44:25 by adippena          #+#    #+#             */
-/*   Updated: 2016/08/15 07:15:21 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/09 01:12:02 by adippena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,28 +31,8 @@ static int	find_t(double a, double b, double discr, double *t)
 	return (0);
 }
 
-static int	check_lim(t_ray *r, t_prim *o, double *t_test, double *t)
-{
-	t_vector	point;
-
-	if (o->limit == -1)
-	{
-		*t = *t_test;
-		return (1);
-	}
-	point = vadd(r->loc, vmult(r->dir, *t_test));
-	point = vproject(point, o->dir);
-	if (vnormalize(vsub(point, o->loc)) <= o->limit)
-	{
-		*t = *t_test;
-		return (1);
-	}
-	return (0);
-}
-
 int			intersect_cylinder(t_ray *r, t_prim *o, double *t)
 {
-	double			t_test;
 	t_int_cylinder	c;
 
 	c.dist = vsub(r->loc, o->loc);
@@ -64,7 +44,5 @@ int			intersect_cylinder(t_ray *r, t_prim *o, double *t)
 	c.d = c.b * c.b - 4.0 * c.a * c.c;
 	if (c.d < EPSILON)
 		return (0);
-	if (find_t(c.a, c.b, c.d, &t_test))
-		return (check_lim(r, o, &t_test, t));
-	return (0);
+	return (find_t(c.a, c.b, c.d, t));
 }

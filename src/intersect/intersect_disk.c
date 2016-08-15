@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/12 15:39:30 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/15 07:33:53 by rojones          ###   ########.fr       */
+/*   Created: 2016/08/15 08:44:50 by rojones           #+#    #+#             */
+/*   Updated: 2016/08/15 10:59:04 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int		intersect_disk(t_ray *r, t_prim *o, double *t)
 {
-	double		denominator;
-	double		numerator;
-	double		t0;
 	t_vector	point;
+	double		denominator;
+	double	numerator;
+	double	t0;
 
 	if ((denominator = vdot(r->dir, o->normal)) == 0)
 		return (0);
@@ -26,14 +26,10 @@ int		intersect_disk(t_ray *r, t_prim *o, double *t)
 	if (t0 > EPSILON)
 	{
 		point = vadd(r->loc, vmult(r->dir, t0));
-		t_vector	dist;
-		dist = vsub(o->loc, point);
-		double check;
-		check = vnormalize(dist);
-		if (check < o->radius)
+		if (vnormalize(vsub(point, o->loc)) <= o->radius)
 		{
-				*t = t0;
-				return (1);
+			*t = t0;
+			return (1);
 		}
 		return (0);
 	}
