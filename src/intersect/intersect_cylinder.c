@@ -6,7 +6,7 @@
 /*   By: adippena <angusdippenaar@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/14 22:44:25 by adippena          #+#    #+#             */
-/*   Updated: 2016/08/09 01:12:02 by adippena         ###   ########.fr       */
+/*   Updated: 2016/08/15 07:15:21 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ static int	check_lim(t_ray *r, t_prim *o, double *t_test, double *t)
 		return (1);
 	}
 	point = vadd(r->loc, vmult(r->dir, *t_test));
-	point = vproject(poinr, o->dir);
-	if (vnormaliz(vsub(point, o->loc)) <= o->limit)
+	point = vproject(point, o->dir);
+	if (vnormalize(vsub(point, o->loc)) <= o->limit)
 	{
 		*t = *t_test;
 		return (1);
@@ -52,6 +52,7 @@ static int	check_lim(t_ray *r, t_prim *o, double *t_test, double *t)
 
 int			intersect_cylinder(t_ray *r, t_prim *o, double *t)
 {
+	double			t_test;
 	t_int_cylinder	c;
 
 	c.dist = vsub(r->loc, o->loc);

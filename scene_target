@@ -1,7 +1,7 @@
 SCENE RT
 	CAMERA
-		LOC	0 -10 0
-		DIR	0 0 0
+		LOC	0 -20 0
+		DIR	0 1 0
 		UP	0 0 1
 
 	LIGHT
@@ -54,15 +54,21 @@ SCENE RT
 		SPECULAR	FFFFFF 0.5
 
 	PRIMITIVE
-		TYPE		sphere
-		LOC			0 2 0
+		TYPE		cone
+		LOC			0 0 0
+		DIR			0 1 0
+		MATERIAL	green
+
+	PRIMITIVE
+		TYPE		plane
+		LOC			0 20 0
 		NORMAL		0 -1 0
 		RADIUS		5
 		MATERIAL	red
 
 	PRIMITIVE
 		TYPE		plane
-		LOC			0 20 0
-		NORMAL		0 -1 0
+		LOC			20 0 0
+		NORMAL		1 0 0
 		RADIUS		5
 		MATERIAL	red
