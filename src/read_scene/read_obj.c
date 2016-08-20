@@ -6,7 +6,7 @@
 /*   By: adippena <angusdippenaar@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/11 19:48:22 by adippena          #+#    #+#             */
-/*   Updated: 2016/08/12 19:44:44 by adippena         ###   ########.fr       */
+/*   Updated: 2016/08/20 18:31:13 by adippena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,6 @@ void		read_obj(t_env *e, int fd)
 		}
 		ft_strdel(&line);
 	}
+	ft_strdel(&line);
 	make_box(o);
 }
-

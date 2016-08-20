@@ -6,7 +6,7 @@
 /*   By: adippena <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/15 11:30:27 by adippena          #+#    #+#             */
-/*   Updated: 2016/07/16 16:50:15 by adippena         ###   ########.fr       */
+/*   Updated: 2016/08/20 17:19:27 by adippena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,10 @@ char	*ft_strnew(size_t size)
 	char	*str;
 	char	*str2;
 
-	str = malloc(size);
-	if (str == NULL)
+	if ((str = malloc(size)) == NULL)
 		return (NULL);
 	str2 = str;
 	while (size--)
-		*str2++ = '\0';
+		*str2++ = 0;
 	return (str);
 }

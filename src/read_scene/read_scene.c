@@ -6,7 +6,7 @@
 /*   By: adippena <angusdippenaar@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 20:00:42 by adippena          #+#    #+#             */
-/*   Updated: 2016/08/15 17:12:55 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/20 18:31:48 by adippena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ static void	get_quantities(t_env *e, int fd)
 	e->prim = (t_prim **)malloc(sizeof(t_prim *) * e->prims);
 	e->object = (t_object **)malloc(sizeof(t_object *) * e->objects);
 	close(fd);
+	ft_strdel(&line);
 }
 
 /*
@@ -116,6 +117,7 @@ void		read_scene(char *file, t_env *e)
 		scene_attributes(e, line);
 		ft_strdel(&line);
 	}
+	ft_strdel(&temp_line);
 	while (ft_gnl(fd, &temp_line))
 		call_type(e, fd, &temp_line);
 	close(fd);

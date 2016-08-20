@@ -6,7 +6,7 @@
 /*   By: adippena <angusdippenaar@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/09 12:40:41 by adippena          #+#    #+#             */
-/*   Updated: 2016/08/15 16:24:53 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/20 18:34:00 by adippena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,11 @@ static void	set_material_values(t_env *e, char *pt1, char *pt2)
 	else if (!ft_strcmp(pt1, "SPECULAR"))
 		e->material[e->materials]->spec = get_colour(e, values);
 	else if (!ft_strcmp(pt1, "REFLECT"))
-		e->material[e->materials]->reflect = to_range(ft_atod(values.strings[0]), 0.0, 1.0);
+		e->material[e->materials]->reflect =
+		to_range(ft_atod(values.strings[0]), 0.0, 1.0);
 	else if (!ft_strcmp(pt1, "REFRACT"))
-		e->material[e->materials]->refract = to_range(ft_atod(values.strings[0]), 0.0, 1.0);
+		e->material[e->materials]->refract =
+		to_range(ft_atod(values.strings[0]), 0.0, 1.0);
 	else if (!ft_strcmp(pt1, "IOR"))
 		e->material[e->materials]->ior = ft_atod(values.strings[0]);
 	ft_free_split(&values);
@@ -63,10 +65,7 @@ void		get_material_attributes(t_env *e, int fd)
 	while (ft_gnl(fd, &temp_line))
 	{
 		if (temp_line[0] == '\0')
-		{
-			ft_strdel(&temp_line);
 			break ;
-		}
 		attr = ft_nstrsplit(temp_line, '\t');
 		ft_strdel(&temp_line);
 		if (attr.words < 2)
@@ -74,5 +73,6 @@ void		get_material_attributes(t_env *e, int fd)
 		set_material_values(e, attr.strings[0], attr.strings[1]);
 		ft_free_split(&attr);
 	}
+	ft_strdel(&temp_line);
 	++e->materials;
 }

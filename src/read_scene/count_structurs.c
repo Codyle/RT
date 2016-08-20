@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/11 09:28:52 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/11 15:31:53 by rojones          ###   ########.fr       */
+/*   Updated: 2016/08/20 18:28:11 by adippena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,20 @@ static	void	inc_count(t_objcount *re, int fd, char *line)
 	char	*temp_line2;
 
 	temp_line = ft_strtrim(line);
-		if (!ft_strcmp(temp_line, "OBJECT"))
-			re->obj++;
-		else if (!ft_strcmp(temp_line, "LIGHT"))
-			re->light++;
-		else if (!ft_strcmp(temp_line, "MATERIAL"))
-			re->mat++;
-		while (ft_gnl(fd, &temp_line2))
-		{   
-			if (temp_line2[0] == '\0')
-			{   
-				ft_strdel(&temp_line2);
-				break ;
-			}
-			ft_strdel(&temp_line2);
-		}	
-		ft_strdel(&temp_line);
+	if (!ft_strcmp(temp_line, "OBJECT"))
+		re->obj++;
+	else if (!ft_strcmp(temp_line, "LIGHT"))
+		re->light++;
+	else if (!ft_strcmp(temp_line, "MATERIAL"))
+		re->mat++;
+	while (ft_gnl(fd, &temp_line2))
+	{   
+		if (temp_line2[0] == '\0')
+			break ;
+		ft_strdel(&temp_line2);
+	}
+	ft_strdel(&temp_line);
+	ft_strdel(&temp_line2);
 }
 
 t_objcount	count_object(char *file, t_env *e)
@@ -54,17 +52,16 @@ t_objcount	count_object(char *file, t_env *e)
 	while (ft_gnl(fd, &temp_line))
 	{
 		if (temp_line[0] == '\0')
-		{
-			ft_strdel(&temp_line);
 			break ;
-		}
 		ft_strdel(&temp_line);
 	}
+	ft_strdel(&temp_line);
 	while (ft_gnl(fd, &temp_line))
 	{
 		inc_count(&re, fd, temp_line);
 		ft_strdel(&temp_line);
 	}
+	ft_strdel(&temp_line);
 	close(fd);
 	return (re);
 }
